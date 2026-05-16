@@ -1,0 +1,21 @@
+# Dockerfile.slim — Batch Transform (ETL Pipeline)
+# Minimal dependencies, ~50MB target
+# Build with: --target lambda-target or --target fargate-target
+
+# ── Lambda target ────────────────────────────────────────────────────────────
+FROM public.ecr.aws/lambda/python:3.11 AS lambda-target
+COPY requirements-slim-lambda.txt /tmp/requirements.txt
+RUN pip install --no-cache-dir -r /tmp/requirements.txt && rm /tmp/requirements.txt
+COPY handler.py ${LAMBDA_TASK_ROOT}/
+CMD ["handler.handler"]
+
+# ── Fargate target ───────────────────────────────────────────────────────────
+FROM python:3.11-slim AS fargate-target
+RUN apt-get update && apt-get upgrade -y && rm -rf /var/lib/apt/lists/*
+WORKDIR /app
+COPY requirements-slim.txt .
+RUN pip install --no-cache-dir -r requirements-slim.txt
+COPY handler.py .
+ENV PLATFORM=fargate
+EXPOSE 8080
+CMD ["python", "handler.py"]

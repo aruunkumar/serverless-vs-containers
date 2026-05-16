@@ -1,0 +1,5 @@
+boto3
+flask
+numpy<2.1
+pandas<2.3
+pyarrow<18

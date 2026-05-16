@@ -1,0 +1,15 @@
+boto3
+flask
+torch
+torchvision
+Pillow
+gunicorn
+numpy<2.1
+requests
+pydantic
+structlog
+aws-lambda-powertools
+# Additional packages for standard image size (target: 500MB+)
+scikit-learn
+opencv-python-headless
+transformers

@@ -1,0 +1,36 @@
+# Dockerfile.standard — ML Inference (Image Recognition)
+# Enterprise libraries + ResNet-50 (~98MB) and MobileNetV2 (~14MB) weights
+# Build with: --target lambda-target or --target fargate-target
+
+# ── Shared: download both model weights ─────────────────────────────────────
+FROM python:3.11-slim AS model-downloader
+RUN pip install --no-cache-dir torch torchvision
+RUN mkdir -p /app/models \
+    && python -c "\
+import torch, torchvision.models as m; \
+resnet = m.resnet50(weights=m.ResNet50_Weights.DEFAULT); \
+torch.save(resnet.state_dict(), '/app/models/resnet50.pth'); \
+mobilenet = m.mobilenet_v2(weights=m.MobileNet_V2_Weights.DEFAULT); \
+torch.save(mobilenet.state_dict(), '/app/models/mobilenet_v2.pth')"
+
+# ── Lambda target (CPU-only torch from PyTorch index) ────────────────────────
+FROM public.ecr.aws/lambda/python:3.11 AS lambda-target
+COPY requirements-standard-lambda.txt /tmp/requirements.txt
+RUN pip install --no-cache-dir -r /tmp/requirements.txt && rm /tmp/requirements.txt
+COPY --from=model-downloader /app/models /var/task/models
+ENV MODEL_DIR=/var/task/models
+COPY handler.py ${LAMBDA_TASK_ROOT}/
+CMD ["handler.handler"]
+
+# ── Fargate target ───────────────────────────────────────────────────────────
+FROM python:3.11-slim AS fargate-target
+RUN apt-get update && apt-get upgrade -y && rm -rf /var/lib/apt/lists/*
+WORKDIR /app
+COPY requirements-standard.txt .
+RUN pip install --no-cache-dir -r requirements-standard.txt
+COPY --from=model-downloader /app/models /app/models
+COPY handler.py .
+ENV PLATFORM=fargate
+ENV MODEL_DIR=/app/models
+EXPOSE 8080
+CMD ["gunicorn", "--bind", "0.0.0.0:8080", "handler:app"]

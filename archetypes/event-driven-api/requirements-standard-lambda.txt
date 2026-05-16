@@ -1,0 +1,18 @@
+boto3
+flask
+Pillow
+gunicorn
+numpy<2.1
+requests
+pydantic
+structlog
+aws-lambda-powertools
+# Additional packages for standard image size (Lambda-compatible wheels only)
+scipy<1.14
+scikit-learn<1.4
+opencv-python-headless
+# Pure-Python bloat (no C compiler needed, adds ~100MB)
+sympy
+networkx
+faker
+nltk

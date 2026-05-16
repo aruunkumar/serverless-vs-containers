@@ -1,0 +1,32 @@
+# Dockerfile.standard — Enterprise Microservice (Hotel Reservation)
+# Enterprise libraries + DocumentDB CA bundle
+# Build with: --target lambda-target or --target fargate-target
+
+# ── Shared: download DocumentDB CA bundle ────────────────────────────────────
+FROM python:3.11-slim AS ca-downloader
+RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates \
+    && curl -sS "https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem" \
+       -o /tmp/global-bundle.pem \
+    && apt-get purge -y curl && apt-get autoremove -y && rm -rf /var/lib/apt/lists/*
+
+# ── Lambda target ────────────────────────────────────────────────────────────
+FROM public.ecr.aws/lambda/python:3.11 AS lambda-target
+COPY requirements-standard-lambda.txt /tmp/requirements.txt
+RUN pip install --no-cache-dir -r /tmp/requirements.txt && rm /tmp/requirements.txt
+COPY --from=ca-downloader /tmp/global-bundle.pem /var/task/global-bundle.pem
+ENV TLS_CA_FILE=/var/task/global-bundle.pem
+COPY handler.py ${LAMBDA_TASK_ROOT}/
+CMD ["handler.handler"]
+
+# ── Fargate target ───────────────────────────────────────────────────────────
+FROM python:3.11-slim AS fargate-target
+RUN apt-get update && apt-get upgrade -y && rm -rf /var/lib/apt/lists/*
+WORKDIR /app
+COPY requirements-standard.txt .
+RUN pip install --no-cache-dir -r requirements-standard.txt
+COPY --from=ca-downloader /tmp/global-bundle.pem /app/global-bundle.pem
+COPY handler.py .
+ENV PLATFORM=fargate
+ENV TLS_CA_FILE=/app/global-bundle.pem
+EXPOSE 8080
+CMD ["gunicorn", "--bind", "0.0.0.0:8080", "handler:app"]

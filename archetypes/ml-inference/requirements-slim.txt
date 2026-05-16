@@ -1,0 +1,6 @@
+boto3
+flask
+numpy<2.1
+torch
+torchvision
+Pillow
