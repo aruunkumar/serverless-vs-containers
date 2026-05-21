@@ -2,15 +2,6 @@
 # Experiment Implementation Guide — File 1 of 8
 # Context, Background, and Experimental Variables
 
-**Document Version**: 1.0
-**Date**: April 20, 2026
-**Purpose**: Complete technical specification for building and executing the cross-paradigm benchmark experiments
-**Audience**: Engineer or AI agent with AWS experience, no prior context on the research paper
-**AWS Region**: us-east-1 (ALL resources must be in this region)
-**Estimated Duration**: Day 1: Setup & Deploy | Days 2–8: Run experiments | Day 9: Data collection
-
-> **IMPORTANT**: This document is self-contained. A reader with no prior context must be able to execute the experiments end-to-end using only this guide (and the companion files 2–5). Every bash command is complete and executable. Do not skip any step.
-
 ---
 
 ## Table of Contents (Full Guide)

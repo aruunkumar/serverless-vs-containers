@@ -215,5 +215,3 @@ bash scripts/cleanup.sh
 The script will ask for confirmation before deleting everything. It tears down all 32 endpoints, DocumentDB, ECR repos, S3, networking, IAM roles, and the EC2 instance.
 
 ---
-
-One heads-up: the biggest cost drivers are the DocumentDB cluster and the 16 always-on Fargate tasks. Budget roughly $50-80/day while the experiment is running. The cleanup script stops all charges.
