@@ -58,18 +58,14 @@ serverless-container-experiments/
 │
 ├── training-output/
 │   ├── run-1/                   Baseline (no cold starts, no ALB LCU)
-
 │   └── run-2/                   Final run with all signals
 │       ├── models/              Serialized estimators + feature_schema.json
 │       ├── model_summary.json   R², RMSE, CIs, feature importances
 │       └── *.png                Predicted-vs-actual plots, feature importance
 │
 ├── docs/
-│   ├── findings_report.md           Standalone results write-up
-│   ├── post_experiment_guide.md     Operator runbook (post-collection workflow)
 │   ├── implementation-guide/        Step-by-step build/deploy guides (8 numbered docs)
-│   ├── specs/                       Pre-implementation requirements + design
-│   ├── figures/                     Findings-report figures + their generator
+
 ```
 
 ## Quick start
@@ -143,9 +139,7 @@ The full experiment takes ~63 hours wall-clock (32 deployments running in parall
 
 - **What was measured and why** — [`docs/specs/requirements.md`](docs/specs/requirements.md) and [`docs/specs/design.md`](docs/specs/design.md)
 
-- **Key findings** — [`docs/findings_report.md`](docs/findings_report.md)
-
-- **Operating the platform** — [`docs/implementation-guide/`](docs/implementation-guide/) (8 numbered docs covering setup → cleanup) and [`docs/post_experiment_guide.md`](docs/post_experiment_guide.md)
+- **Operating the platform** — [`docs/implementation-guide/`](docs/implementation-guide/) (8 numbered docs covering setup → cleanup) 
 
 - **The trained models** — [`training-output/run-2/models/`](training-output/run-2/models/) (joblib artifacts + `feature_schema.json`); use [`training/predict.py`](training/predict.py) to score new inputs
 
