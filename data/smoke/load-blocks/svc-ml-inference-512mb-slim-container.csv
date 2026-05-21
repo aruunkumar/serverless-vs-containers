@@ -1,0 +1,3 @@
+deployment_name,archetype,platform,memory_mb,image_size,block_index,invocation_frequency,traffic_cv,duration_tier,block_start_utc,total_requests,error_count,error_rate_pct,p50_latency_ms,p95_latency_ms,p99_latency_ms,mean_latency_ms,throughput_rps
+svc-ml-inference-512mb-slim-container,ml-inference,fargate,512,slim,1,10k,0.5,small,2026-05-08T21:23:53.864731+00:00,34,0,0.0,65.83,87.43,88.31,69.22,0.1133
+svc-ml-inference-512mb-slim-container,ml-inference,fargate,512,slim,2,10k,0.5,medium,2026-05-08T21:29:54.727566+00:00,35,0,0.0,995.42,1129.08,1594.23,1030.4,0.1167

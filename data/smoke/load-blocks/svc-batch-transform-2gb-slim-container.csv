@@ -1,0 +1,3 @@
+deployment_name,archetype,platform,memory_mb,image_size,block_index,invocation_frequency,traffic_cv,duration_tier,block_start_utc,total_requests,error_count,error_rate_pct,p50_latency_ms,p95_latency_ms,p99_latency_ms,mean_latency_ms,throughput_rps
+svc-batch-transform-2gb-slim-container,batch-transform,fargate,2048,slim,1,10k,0.5,small,2026-05-08T21:23:52.863853+00:00,31,0,0.0,36.38,47.98,53.24,36.98,0.1033
+svc-batch-transform-2gb-slim-container,batch-transform,fargate,2048,slim,2,10k,0.5,medium,2026-05-08T21:30:15.090693+00:00,39,0,0.0,116.69,126.63,126.92,117.19,0.13

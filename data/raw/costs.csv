@@ -1,0 +1,7 @@
+date,service,usage_type,cost_usd,unit
+2026-05-08,Amazon API Gateway,USE2-ApiGatewayHttpRequest,0.003274,USD
+2026-05-08,Amazon Elastic Container Service,USE2-Fargate-GB-Hours,1.5196902724,USD
+2026-05-08,Amazon Elastic Container Service,USE2-Fargate-vCPU-Hours:perCPU,6.9198045236,USD
+2026-05-09,Amazon API Gateway,USE2-ApiGatewayHttpRequest,0.000676,USD
+2026-05-09,Amazon Elastic Container Service,USE2-Fargate-GB-Hours,0.1778,USD
+2026-05-09,Amazon Elastic Container Service,USE2-Fargate-vCPU-Hours:perCPU,0.8096,USD

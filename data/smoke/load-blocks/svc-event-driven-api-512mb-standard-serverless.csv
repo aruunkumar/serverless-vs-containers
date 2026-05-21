@@ -1,0 +1,3 @@
+deployment_name,archetype,platform,memory_mb,image_size,block_index,invocation_frequency,traffic_cv,duration_tier,block_start_utc,total_requests,error_count,error_rate_pct,p50_latency_ms,p95_latency_ms,p99_latency_ms,mean_latency_ms,throughput_rps
+svc-event-driven-api-512mb-standard-serverless,event-driven-api,lambda,512,standard,1,10k,0.5,small,2026-05-08T21:23:42.354687+00:00,29,0,0.0,72.96,105.34,818.06,110.87,0.0967
+svc-event-driven-api-512mb-standard-serverless,event-driven-api,lambda,512,standard,2,10k,0.5,medium,2026-05-08T21:29:45.858350+00:00,36,0,0.0,69.88,102.98,197.63,75.97,0.12

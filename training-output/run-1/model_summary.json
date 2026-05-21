@@ -1,0 +1,299 @@
+{
+  "lambda_cost": {
+    "model_name": "lambda_cost",
+    "description": "Lambda cost per block (USD)",
+    "target": "estimated_cost_usd",
+    "train_size": 432,
+    "test_size": 144,
+    "algorithms": {
+      "ridge": {
+        "r2": 0.6405,
+        "rmse": 0.0031,
+        "mae": 0.0025,
+        "confidence_intervals": {
+          "r2_ci": [
+            0.5567,
+            0.6979
+          ],
+          "rmse_ci": [
+            0.0028,
+            0.0035
+          ],
+          "mae_ci": [
+            0.0022,
+            0.0028
+          ],
+          "n_bootstrap": 1000
+        },
+        "coefficients": {
+          "state_management": -0.002939,
+          "traffic_cv": 6e-06,
+          "memory_mb": 3e-06,
+          "invocation_frequency_numeric": 0.0,
+          "image_size_mb": 0.0,
+          "duration_tier_numeric": 0.0
+        },
+        "intercept": -0.002943
+      },
+      "random_forest": {
+        "r2": 0.3326,
+        "rmse": 0.0042,
+        "mae": 0.0025,
+        "confidence_intervals": {
+          "r2_ci": [
+            0.2225,
+            0.4465
+          ],
+          "rmse_ci": [
+            0.0035,
+            0.005
+          ],
+          "mae_ci": [
+            0.002,
+            0.0031
+          ],
+          "n_bootstrap": 1000
+        },
+        "feature_importance": {
+          "log_invocations": 0.3202,
+          "invocation_frequency_numeric": 0.3039,
+          "memory_mb": 0.2311,
+          "state_management": 0.0679,
+          "image_size_mb": 0.0333,
+          "traffic_cv": 0.0215,
+          "duration_tier_numeric": 0.0112,
+          "sustained_load": 0.0109
+        }
+      }
+    },
+    "features": {
+      "ridge": [
+        "memory_mb",
+        "image_size_mb",
+        "invocation_frequency_numeric",
+        "traffic_cv",
+        "duration_tier_numeric",
+        "state_management"
+      ],
+      "random_forest": [
+        "memory_mb",
+        "image_size_mb",
+        "invocation_frequency_numeric",
+        "traffic_cv",
+        "duration_tier_numeric",
+        "log_invocations",
+        "sustained_load",
+        "state_management"
+      ]
+    },
+    "best_algorithm": "ridge"
+  },
+  "fargate_cost": {
+    "model_name": "fargate_cost",
+    "description": "Fargate cost per block (USD)",
+    "target": "estimated_cost_usd",
+    "train_size": 468,
+    "test_size": 106,
+    "algorithms": {
+      "ridge": {
+        "r2": 1.0,
+        "rmse": 0.0,
+        "mae": 0.0,
+        "confidence_intervals": {
+          "r2_ci": [
+            1.0,
+            1.0
+          ],
+          "rmse_ci": [
+            0.0,
+            0.0
+          ],
+          "mae_ci": [
+            0.0,
+            0.0
+          ],
+          "n_bootstrap": 1000
+        },
+        "coefficients": {
+          "memory_mb": 7.2e-05,
+          "state_management": -0.0,
+          "image_size_mb": 0.0,
+          "traffic_cv": 0.0,
+          "invocation_frequency_numeric": -0.0,
+          "duration_tier_numeric": 0.0
+        },
+        "intercept": 1e-06
+      },
+      "random_forest": {
+        "r2": 1.0,
+        "rmse": 0.0,
+        "mae": 0.0,
+        "confidence_intervals": {
+          "r2_ci": [
+            1.0,
+            1.0
+          ],
+          "rmse_ci": [
+            0.0,
+            0.0
+          ],
+          "mae_ci": [
+            0.0,
+            0.0
+          ],
+          "n_bootstrap": 1000
+        },
+        "feature_importance": {
+          "memory_mb": 1.0,
+          "image_size_mb": 0.0,
+          "invocation_frequency_numeric": 0.0,
+          "traffic_cv": 0.0,
+          "duration_tier_numeric": 0.0,
+          "log_invocations": 0.0,
+          "sustained_load": 0.0,
+          "state_management": 0.0
+        }
+      }
+    },
+    "features": {
+      "ridge": [
+        "memory_mb",
+        "image_size_mb",
+        "invocation_frequency_numeric",
+        "traffic_cv",
+        "duration_tier_numeric",
+        "state_management"
+      ],
+      "random_forest": [
+        "memory_mb",
+        "image_size_mb",
+        "invocation_frequency_numeric",
+        "traffic_cv",
+        "duration_tier_numeric",
+        "log_invocations",
+        "sustained_load",
+        "state_management"
+      ]
+    },
+    "best_algorithm": "ridge"
+  },
+  "p95_latency": {
+    "model_name": "p95_latency",
+    "description": "p95 latency across both platforms (ms)",
+    "target": "p95_latency_ms",
+    "train_size": 900,
+    "test_size": 250,
+    "algorithms": {
+      "ridge": {
+        "r2": 0.2251,
+        "rmse": 897.1453,
+        "mae": 473.7534,
+        "confidence_intervals": {
+          "r2_ci": [
+            0.1587,
+            0.2916
+          ],
+          "rmse_ci": [
+            593.659,
+            1176.8534
+          ],
+          "mae_ci": [
+            387.9335,
+            576.4537
+          ],
+          "n_bootstrap": 1000
+        },
+        "coefficients": {
+          "arch_ml-inference": 392.409233,
+          "arch_event-driven-api": -389.187262,
+          "state_management": -231.986471,
+          "arch_enterprise-microservice": -231.986471,
+          "traffic_cv": 64.632228,
+          "platform_is_lambda": -29.969157,
+          "memory_mb": -0.107702,
+          "duration_tier_numeric": 0.086289,
+          "image_size_mb": -0.035482,
+          "invocation_frequency_numeric": -0.004154
+        },
+        "intercept": 492.118527
+      },
+      "random_forest": {
+        "r2": 0.7314,
+        "rmse": 528.1938,
+        "mae": 144.0026,
+        "confidence_intervals": {
+          "r2_ci": [
+            0.4037,
+            0.9447
+          ],
+          "rmse_ci": [
+            194.1257,
+            764.094
+          ],
+          "mae_ci": [
+            88.8751,
+            210.6414
+          ],
+          "n_bootstrap": 1000
+        },
+        "feature_importance": {
+          "platform_is_lambda": 0.202,
+          "traffic_cv": 0.1704,
+          "arch_ml-inference": 0.1337,
+          "arch_event-driven-api": 0.0794,
+          "duration_tier_numeric": 0.0779,
+          "memory_mb": 0.076,
+          "invocation_frequency_numeric": 0.0573,
+          "log_invocations": 0.0552,
+          "sustained_load": 0.045,
+          "state_management": 0.039,
+          "arch_enterprise-microservice": 0.0386,
+          "image_size_mb": 0.0255
+        }
+      }
+    },
+    "features": {
+      "ridge": [
+        "memory_mb",
+        "image_size_mb",
+        "invocation_frequency_numeric",
+        "traffic_cv",
+        "duration_tier_numeric",
+        "state_management",
+        "platform_is_lambda",
+        "arch_enterprise-microservice",
+        "arch_event-driven-api",
+        "arch_ml-inference"
+      ],
+      "random_forest": [
+        "memory_mb",
+        "image_size_mb",
+        "invocation_frequency_numeric",
+        "traffic_cv",
+        "duration_tier_numeric",
+        "log_invocations",
+        "sustained_load",
+        "state_management",
+        "platform_is_lambda",
+        "arch_enterprise-microservice",
+        "arch_event-driven-api",
+        "arch_ml-inference"
+      ]
+    },
+    "best_algorithm": "random_forest"
+  },
+  "break_even": {
+    "train": {
+      "matched_configs": 360,
+      "lambda_cheaper_count": 360,
+      "fargate_cheaper_count": 0,
+      "mean_cost_diff_usd": -0.088381
+    },
+    "test": {
+      "matched_configs": 36,
+      "lambda_cheaper_count": 36,
+      "fargate_cheaper_count": 0,
+      "mean_cost_diff_usd": -0.144472
+    }
+  }
+}

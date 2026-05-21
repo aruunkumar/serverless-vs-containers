@@ -1,0 +1,3 @@
+deployment_name,archetype,platform,memory_mb,image_size,block_index,invocation_frequency,traffic_cv,duration_tier,block_start_utc,total_requests,error_count,error_rate_pct,p50_latency_ms,p95_latency_ms,p99_latency_ms,mean_latency_ms,throughput_rps
+svc-event-driven-api-2gb-standard-container,event-driven-api,fargate,2048,standard,1,10k,0.5,small,2026-05-08T21:23:51.362581+00:00,37,0,0.0,33.07,39.19,48.95,33.65,0.1233
+svc-event-driven-api-2gb-standard-container,event-driven-api,fargate,2048,standard,2,10k,0.5,medium,2026-05-08T21:29:55.387699+00:00,31,0,0.0,39.57,52.58,52.63,39.62,0.1033

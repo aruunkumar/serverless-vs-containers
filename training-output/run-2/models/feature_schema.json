@@ -1,0 +1,134 @@
+{
+  "lambda_cost_ridge": {
+    "target": "estimated_cost_usd",
+    "features": [
+      "memory_mb",
+      "image_size_mb",
+      "invocation_frequency_numeric",
+      "traffic_cv",
+      "duration_tier_numeric",
+      "state_management"
+    ],
+    "filter": {
+      "platform": "lambda"
+    },
+    "artifact": "lambda_cost_ridge.joblib"
+  },
+  "lambda_cost_random_forest": {
+    "target": "estimated_cost_usd",
+    "features": [
+      "memory_mb",
+      "image_size_mb",
+      "invocation_frequency_numeric",
+      "traffic_cv",
+      "duration_tier_numeric",
+      "log_invocations",
+      "sustained_load",
+      "state_management"
+    ],
+    "filter": {
+      "platform": "lambda"
+    },
+    "artifact": "lambda_cost_random_forest.joblib"
+  },
+  "fargate_cost_ridge": {
+    "target": "estimated_cost_usd",
+    "features": [
+      "memory_mb",
+      "image_size_mb",
+      "invocation_frequency_numeric",
+      "traffic_cv",
+      "duration_tier_numeric",
+      "state_management"
+    ],
+    "filter": {
+      "platform": "fargate"
+    },
+    "artifact": "fargate_cost_ridge.joblib"
+  },
+  "fargate_cost_random_forest": {
+    "target": "estimated_cost_usd",
+    "features": [
+      "memory_mb",
+      "image_size_mb",
+      "invocation_frequency_numeric",
+      "traffic_cv",
+      "duration_tier_numeric",
+      "log_invocations",
+      "sustained_load",
+      "state_management"
+    ],
+    "filter": {
+      "platform": "fargate"
+    },
+    "artifact": "fargate_cost_random_forest.joblib"
+  },
+  "cold_start_rate_ridge": {
+    "target": "cold_start_rate_pct",
+    "features": [
+      "memory_mb",
+      "image_size_mb",
+      "invocation_frequency_numeric",
+      "traffic_cv",
+      "duration_tier_numeric",
+      "state_management"
+    ],
+    "filter": {
+      "platform": "lambda"
+    },
+    "artifact": "cold_start_rate_ridge.joblib"
+  },
+  "cold_start_rate_random_forest": {
+    "target": "cold_start_rate_pct",
+    "features": [
+      "memory_mb",
+      "image_size_mb",
+      "invocation_frequency_numeric",
+      "traffic_cv",
+      "duration_tier_numeric",
+      "log_invocations",
+      "sustained_load",
+      "state_management"
+    ],
+    "filter": {
+      "platform": "lambda"
+    },
+    "artifact": "cold_start_rate_random_forest.joblib"
+  },
+  "p95_latency_ridge": {
+    "target": "p95_latency_ms",
+    "features": [
+      "memory_mb",
+      "image_size_mb",
+      "invocation_frequency_numeric",
+      "traffic_cv",
+      "duration_tier_numeric",
+      "state_management",
+      "platform_is_lambda",
+      "arch_enterprise-microservice",
+      "arch_event-driven-api",
+      "arch_ml-inference"
+    ],
+    "filter": null,
+    "artifact": "p95_latency_ridge.joblib"
+  },
+  "p95_latency_random_forest": {
+    "target": "p95_latency_ms",
+    "features": [
+      "memory_mb",
+      "image_size_mb",
+      "invocation_frequency_numeric",
+      "traffic_cv",
+      "duration_tier_numeric",
+      "log_invocations",
+      "sustained_load",
+      "state_management",
+      "platform_is_lambda",
+      "arch_enterprise-microservice",
+      "arch_event-driven-api",
+      "arch_ml-inference"
+    ],
+    "filter": null,
+    "artifact": "p95_latency_random_forest.joblib"
+  }
+}
